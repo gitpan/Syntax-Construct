@@ -4,7 +4,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 my %construct = (
@@ -33,6 +33,7 @@ my %construct = (
                  '//'              => v5.10,
                  '?PARNO'          => v5.10,
                  '?<>'             => v5.10,
+                 '?|'              => v5.10,
                  'quant+'          => v5.10,
                  'regex-verbs'     => v5.10,
                  '\K'              => v5.10,
@@ -75,7 +76,7 @@ Syntax::Construct - Identify which non-feature constructs are used in the code.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 SYNOPSIS
 
@@ -85,8 +86,8 @@ the rest, there is B<Syntax::Construct>.
   use Syntax::Construct qw( // ... /r );
 
   my $x = shift // 'default';
-  my $y = /.*_feature/r;
-  if ($y =~ /special_feature/) {
+  my $y = $x =~ s/de(fault)/$1/r;
+  if ($y =~ /^fault/) {
       ...
   }
 
@@ -106,6 +107,8 @@ giving it an empty list is a no-op.
 =head3 ?PARNO
 
 =head3 ?<>
+
+=head3 ?|
 
 =head3 quant+
 
