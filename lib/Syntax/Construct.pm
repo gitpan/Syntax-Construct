@@ -4,7 +4,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 
 my %construct = (
@@ -76,7 +76,7 @@ Syntax::Construct - Identify which non-feature constructs are used in the code.
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =head1 SYNOPSIS
 
@@ -130,19 +130,36 @@ giving it an empty list is a no-op.
 
 =head3 package-version
 
+L<perl5120delta/New package NAME VERSION syntax>
+
 =head3 ...
+
+L<perl5120delta/The ... operator> or L<perlop/Yada Yada Operator>
 
 =head3 each-array
 
+L<perl5120delta/each, keys, values are now more flexible>
+
 =head3 keys-array
+
+L<perl5120delta/each, keys, values are now more flexible>
 
 =head3 values-array
 
+L<perl5120delta/each, keys, values are now more flexible>
+
 =head3 delete-local
+
+L<perl5120delta/delete local>
 
 =head3 length-undef
 
+See the ninth bullet in L<perl5120delta/Other potentially incompatible
+changes>.
+
 =head3 \N
+
+L<perl5120delta/\N experimental regex escape>
 
 =head2 5.014
 
@@ -164,7 +181,7 @@ giving it an empty list is a no-op.
 
 =head2 5.016
 
-No constructs.
+No non-feature constructs were introduced in this version of Perl.
 
 =head2 5.018
 
@@ -174,11 +191,11 @@ L<perl5180delta/Computed Labels>
 
 =head3 our-sub
 
-L<perl5180delta/Lexical Subroutines>
+L<perl5180delta/Lexical subroutines>
 
 =head3 state-sub
 
-L<perl5180delta/Lexical Subroutines>
+L<perl5180delta/Lexical subroutines>
 
 =head1 AUTHOR
 
