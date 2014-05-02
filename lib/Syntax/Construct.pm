@@ -4,7 +4,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 
 my %construct = (
@@ -76,7 +76,7 @@ Syntax::Construct - Identify which non-feature constructs are used in the code.
 
 =head1 VERSION
 
-Version 0.07
+Version 0.08
 
 =head1 SYNOPSIS
 
@@ -230,8 +230,9 @@ L<perl5140delta/Regular Expressions> and L<perlre/Modifiers>.
 =head3 auto-deref
 
 L<perl5140delta/Array and hash container functions accept
-references>. See also L<push>, L<pop>, L<shift>, L<unshift>,
-L<splice>, L<keys>, L<values>, and L<each>.
+references>. See also L<perlfunc/push>, L<perlfunc/pop>,
+L<perlfunc/shift>, L<perlfunc/unshift>, L<perlfunc/splice>,
+L<perlfunc/keys>, L<perlfunc/values>, and L<perlfunc/each>.
 
 =head3 ^GLOBAL_PHASE
 
