@@ -4,10 +4,17 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 
 my %construct = (
+                 ':prototype'      => 5.020,
+                 'drand48'         => 5.020,
+                 '%slice'          => 5.020,
+                 'unicode6.3'      => 5.020,
+                 '\p{Unicode}'     => 5.020,
+                 'utf8-locale'     => 5.020,
+
                  'computed-labels' => 5.018,
                  'our-sub'         => 5.018,
                  'state-sub'       => 5.018,
@@ -20,6 +27,7 @@ my %construct = (
                  '/a'              => 5.014,
                  'auto-deref'      => 5.014,
                  '^GLOBAL_PHASE'   => 5.014,
+                 '\o'              => 5.014,
 
                  'package-version' => 5.012,
                  '...'             => 5.012,
@@ -76,7 +84,7 @@ Syntax::Construct - Identify which non-feature constructs are used in the code.
 
 =head1 VERSION
 
-Version 0.08
+Version 0.09
 
 =head1 SYNOPSIS
 
@@ -90,6 +98,12 @@ the rest, there is B<Syntax::Construct>.
   if ($y =~ /^fault/) {
       ...
   }
+
+=head1 DESCRIPTION
+
+This module provides a simple way of specifying syntactic constructs
+that are not implemented via the L<feature> pragma, but are still not
+compatible with older versions of Perl.
 
 =head1 EXPORT
 
@@ -106,7 +120,7 @@ L<perl5100delta/Recursive sort subs>.
 
 =head3 //
 
-L<perl5100delta/Defined-or_operator> or L<perlop/Logical Defined-Or>.
+L<perl5100delta/Defined-or operator> or L<perlop/Logical Defined-Or>.
 
 =head3 ?PARNO
 
@@ -121,10 +135,7 @@ L<perlre/"(?E<60>NAMEE<62>pattern)">.
 
 =head3 ?|
 
-Not mentioned in any Delta. See L<perlre/"(?E<124>pattern)">.
-
-=for comment
-Invalid link generated in CPAN.
+Not mentioned in any Delta. See B<(?|pattern)> in L<perlre/Extended patterns>.
 
 =head3 quant+
 
@@ -140,7 +151,7 @@ expressions> or L<perlre/Special Backtracking Control Verbs>.
 =head3 \K
 
 "\K escape" under L<perl5100delta/Regular expressions> or
-L<perlre/Look Around Assertions>.
+L<perlre/Look-Around Assertions>.
 
 =head3 \R
 
@@ -230,13 +241,17 @@ L<perl5140delta/Regular Expressions> and L<perlre/Modifiers>.
 =head3 auto-deref
 
 L<perl5140delta/Array and hash container functions accept
-references>. See also L<perlfunc/push>, L<perlfunc/pop>,
-L<perlfunc/shift>, L<perlfunc/unshift>, L<perlfunc/splice>,
-L<perlfunc/keys>, L<perlfunc/values>, and L<perlfunc/each>.
+references>. See also C<push>, C<pop>, C<shift>, C<unshift>,
+C<splice>, C<keys>, C<values>, and C<each> in L<perlfunc>.
 
 =head3 ^GLOBAL_PHASE
 
-L<perl5140delta/New-global-variable-%24%7b%5eGLOBAL_PHASE%7d>.
+See B<New global variable ${^GLOBAL_PHASE}> under
+L<perl5140delta/Other Enhancements>.
+
+=head3 \o
+
+L<perl5140delta/Regular-expressions>.
 
 =head2 5.016
 
@@ -255,6 +270,34 @@ L<perl5180delta/Lexical subroutines>
 =head3 state-sub
 
 L<perl5180delta/Lexical subroutines>
+
+=head2 5.020
+
+=head3 :prototype
+
+L<perldelta/subs now take a prototype attribute>
+
+=head3 drand48
+
+L<perldelta/rand now uses a consistent random number generator>
+
+=head3 %slice
+
+L<perldelta/New slice syntax>
+
+=head3 unicode6.3
+
+L<perldelta/Unicode 6.3 now supported>
+
+=head3 \p{Unicode}
+
+See B<New \p{Unicode} regular expression pattern property> in
+L<perldelta/Core Enhancements>.
+
+=head3 utf8-locale
+
+L<perldelta/use locale now works on UTF-8 locales>
+
 
 =head1 AUTHOR
 
@@ -340,7 +383,7 @@ direct or contributory patent infringement, then this Artistic License
 to you shall terminate on the date that such litigation is filed.
 
 Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER
-AND CONTRIBUTORS "AS IS' AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES.
+AND CONTRIBUTORS "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES.
 THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
 PURPOSE, OR NON-INFRINGEMENT ARE DISCLAIMED TO THE EXTENT PERMITTED BY
 YOUR LOCAL LAW. UNLESS REQUIRED BY LAW, NO COPYRIGHT HOLDER OR

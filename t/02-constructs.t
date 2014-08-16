@@ -5,6 +5,22 @@ use strict;
 use Test::More;
 
 my %tests = (
+    '5.020' => [
+        [ ':prototype',
+          'sub func : prototype($$) {} prototype \&func', '$$' ],
+        [ 'drand48',
+          'use Config; $Config{randfunc}', 'Perl_drand48' ],
+        [ '%slice',
+          'my %h = my @l = qw(a A b B); join ":", %h{qw(a b)}, %l[0, 3]',
+          'a:A:b:B:0:a:3:B'],
+        [ 'unicode6.3',
+          'my $i; /\p{Age: 6.3}/ and $i++ for map chr, 0 .. 0xffff; $i', 5 ],
+        [ '\p{Unicode}',
+          'scalar grep $_ =~ /\p{Unicode}/, "a", "\N{U+0FFFFF}"', 2 ],
+        # TODO: 'utf8-locale'.
+    ],
+
+
     '5.018' => [
         [ 'computed-labels',
           'my $x = "A"; B:while (1) { A:while (1) { last $x++ }}; 1', 1],
@@ -30,6 +46,8 @@ my %tests = (
           '0:1:2a:b10 20 30' ],
         [ '^GLOBAL_PHASE',
           '${^GLOBAL_PHASE}', 'RUN'],
+        [ '\o',
+          '"\o{10}"', chr 8 ],
     ],
 
     '5.012' => [
@@ -114,5 +132,8 @@ readline default
     '5.014' => [
         [ '/l',
         [ '/d',
+
+    '5.020' => [
+        [ 'utf8-locale',
 
 =cut
