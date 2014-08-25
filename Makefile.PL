@@ -24,6 +24,7 @@ WriteMakefile(
         #'ABC'              => 1.6,
         #'Foo::Bar::Module' => 5.0401,
     },
+    macro => { TARFLAGS => '--format=ustar -cvf' },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Syntax-Construct-*' },
 );
